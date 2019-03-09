@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var resultsLabel: UILabel!
     @IBOutlet weak var formulaPicker: UIPickerView!
+    @IBOutlet weak var decimalSegment: UISegmentedControl!
     
     
     var formulaArray=["Miles to Kilometers",
@@ -30,39 +31,45 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         formulaPicker.delegate = self
         formulaPicker.dataSource = self
+        conversionString=formulaArray[formulaPicker.selectedRow(inComponent: 0)]
 
     }
     func calcuLateConvert(){
-        
+        guard let inputValue=Double(userInput.text!) else{
+            print("Entered value is not a number")
+            return
+        }
         var outputValue=0.0
-        if let inputValue=Double(userInput.text!){	
-            switch conversionString{
-            case "Miles to Kilometers":
+        
+        switch conversionString{
+        case "Miles to Kilometers":
             outputValue=inputValue/0.62137
-            case "Kilometers to Miles":
+        case "Kilometers to Miles":
             outputValue=inputValue*0.62137
-            case "Feet to Meters":
+        case "Feet to Meters":
             outputValue=inputValue/3.2808
-            case "Yards to Meters":
+        case "Yards to Meters":
             outputValue=inputValue/1.0936
-            case "Meters to Feet":
+        case "Meters to Feet":
             outputValue=inputValue*3.2808
-            case "Meters to Yards":
+        case "Meters to Yards":
             outputValue=inputValue/0.62137
-            default:
+        default:
             print("no convertable string")
             
         }
-            resultsLabel.text="\(inputValue)\(fromUnits)=\(outputValue)\(toUnits)"
+        let formatString=(decimalSegment.selectedSegmentIndex<decimalSegment.numberOfSegments-1 ? "%.\(decimalSegment.selectedSegmentIndex+1)f" : "%f")
+        let outputString = String(format: formatString, outputValue)
+        resultsLabel.text = "\(inputValue) \(fromUnits) = \(outputString) \(toUnits)"
         }
-        else{
-            print("value is not a number")
-        }
-        
+    
+    @IBAction func decimalSelect(_ sender: Any) {
+        calcuLateConvert()
     }
     
    
     @IBAction func convertButtonPressed(_ sender: UIButton) {
+        calcuLateConvert()
     }
 }
 extension ViewController:UIPickerViewDelegate ,UIPickerViewDataSource{
