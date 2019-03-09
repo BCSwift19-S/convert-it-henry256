@@ -86,6 +86,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="ConvertButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZBD-BL-RUj"/>
                                     <action selector="convertButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="azj-7t-e5q"/>
                                 </connections>
                             </button>
@@ -107,9 +108,6 @@
                                             <segment title="None"/>
                                         </segments>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="decimalSelect:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZE3-wO-5wu"/>
-                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
@@ -145,7 +143,6 @@
                     </view>
                     <connections>
                         <outlet property="FromUnitsLabel" destination="DdC-Cq-b4s" id="vnF-E5-UOZ"/>
-                        <outlet property="decimalSegment" destination="sxb-iM-JcL" id="8Hs-kU-34e"/>
                         <outlet property="formulaPicker" destination="bo4-r3-jTg" id="ltz-oA-42C"/>
                         <outlet property="resultsLabel" destination="YAa-EK-Umt" id="H0D-Aw-xvj"/>
                         <outlet property="userInput" destination="Ic8-tx-Brf" id="ETt-ur-Pfw"/>
